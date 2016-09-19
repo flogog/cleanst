@@ -17,8 +17,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class CleanstMap extends Fragment{
-
+/**
+ * Created by flogog on 9/18/16.
+ */
+public class CleanstMapSuggestion extends Fragment {
 
     private MapView mMapView;
     private GoogleMap googleMap;

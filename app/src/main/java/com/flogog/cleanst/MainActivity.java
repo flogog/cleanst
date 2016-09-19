@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.flogog.cleanst.adapter.MapAdapter;
 import com.flogog.cleanst.maps.CleanstMap;
+import com.flogog.cleanst.maps.CleanstMapSuggestion;
 
 import java.util.ArrayList;
 
@@ -35,15 +36,15 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new CleanstMap());
-        //fragments.add(new MascotasFragmentPerfil());
+        fragments.add(new CleanstMapSuggestion());
 
 
         mascotaViewPager = (ViewPager) findViewById(R.id.cleanstViewPager);
         mascotaViewPager.setAdapter(new MapAdapter(getSupportFragmentManager(),fragments));
         mascotaTabLayout = (TabLayout) findViewById(R.id.tabLayout);
         mascotaTabLayout.setupWithViewPager(mascotaViewPager);
-       // mascotaTabLayout.getTabAt(0).setIcon(R.drawable.home_52);
-       // mascotaTabLayout.getTabAt(1).setIcon(R.drawable.dog_footprint_48);
+        mascotaTabLayout.getTabAt(0).setText(getResources().getText(R.string.menu_around_me));
+        mascotaTabLayout.getTabAt(1).setText(getResources().getText(R.string.menu_suggest));
 
     }
 }
