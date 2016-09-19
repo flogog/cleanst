@@ -1,0 +1,20 @@
+<FrameLayout xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+<android.support.v7.widget.Toolbar
+
+    android:id="@+id/map_toolbar"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:layout_width="match_parent"/>
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/cleanstMap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</FrameLayout>
