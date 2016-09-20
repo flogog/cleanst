@@ -1,2 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Clean My Street</string>
+    <string name="menu">Menu</string>
+    <string name="menu_around_me">Mis Alrededores</string>
+    <string name="menu_suggest">Propuestas</string>
+    <string name="settings">Propiedades</string>
+    <string name="about">Acerca De</string>
+    <string name="item_recycle_bin">Reciclaje</string>
+    <string name="item_waste">Organicos</string>
+    <string name="button_report">Notifica</string>
+    <string name="button_save">Guardar</string>
+    <string name="button_picture">Tomar Foto</string>
+    <string name="button_comment">Comentar</string>
+    <string name="button_add">Agregar</string>
+    <string name="fav">Favoritos</string>
+    <string name="item_like">Me gusta</string>
+    <string name="item_likes">Likes</string>
+    <string name="item_miles">distancia</string>
+    <string name="field_username">usuario</string>
+    <string name="field_password">contraseña</string>
+    
+</resources>
