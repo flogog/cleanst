@@ -50,13 +50,14 @@ public class CleanstMap extends Fragment{
 
                 googleMap = mMap;
                 location = new LatLng(40.289152, -76.654579);
+                googleMap.setMyLocationEnabled(true);
 
-                googleMap.addMarker(new MarkerOptions()
+             /*   googleMap.addMarker(new MarkerOptions()
                         .position(location)
                         .title(locationName)
                         .snippet(locationDescription)
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,25));
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));*/
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,20));
 
              /*   googleMap = mMap;
 
