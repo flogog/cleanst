@@ -1,6 +1,11 @@
 package com.flogog.cleanst.maps;
 
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +22,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import static android.content.Context.LOCATION_SERVICE;
+
 /**
  * Created by flogog on 9/18/16.
  */
@@ -24,7 +31,7 @@ public class CleanstMapSuggestion extends Fragment {
 
     private MapView mMapView;
     private GoogleMap googleMap;
-    private LatLng location;
+    private LatLng loc;
     private String locationName;
     private String locationDescription;
     private MapFragmentPresenter mapPresenter;
@@ -33,9 +40,9 @@ public class CleanstMapSuggestion extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_map, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_map_suggestion, container, false);
 
-        mMapView = (MapView) rootView.findViewById(R.id.cleanstMap);
+        mMapView = (MapView) rootView.findViewById(R.id.cleanstMapSuggestion);
         mMapView.onCreate(savedInstanceState);
 
         mMapView.onResume(); // needed to get the map to display immediately
@@ -51,30 +58,37 @@ public class CleanstMapSuggestion extends Fragment {
             public void onMapReady(GoogleMap mMap) {
 
                 googleMap = mMap;
-                location = new LatLng(40.289152, -76.654579);
 
-                googleMap.addMarker(new MarkerOptions()
+                if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        && ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+
+
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                googleMap.setMyLocationEnabled(true);
+                LocationManager service = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
+                Criteria criteria = new Criteria();
+                String provider = service.getBestProvider(criteria, false);
+                Location location = service.getLastKnownLocation(provider);
+                loc = new LatLng(location.getLatitude(),location.getLongitude());
+
+
+             /*   googleMap.addMarker(new MarkerOptions()
                         .position(location)
                         .title(locationName)
                         .snippet(locationDescription)
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,25));
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));*/
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,17));
 
-             /*   googleMap = mMap;
-
-                // For showing a move to my location button
-                googleMap.setMyLocationEnabled(true);
-
-                // For dropping a marker at a point on the Map
-                LatLng sydney = new LatLng(-34, 151);
-                googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
-
-                // For zooming automatically to the location of the marker
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));*/
             }
         });
-
         return rootView;
     }
 

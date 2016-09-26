@@ -14,7 +14,7 @@ tools:context="com.flogog.cleanst.MainActivity">
     >
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="54dp"
         app:layout_scrollFlags="scroll|enterAlways"
         android:id="@+id/cleanstToolBar">
     </android.support.v7.widget.Toolbar>
