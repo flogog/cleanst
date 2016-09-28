@@ -18,6 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".menu.About" />
+        <activity android:name=".menu.Settings" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -30,7 +32,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAg36OsWaa31zBFc3azH7E4jpcGg0VFhEg" />
 
-        <activity android:name=".Login"></activity>
+        <activity android:name=".Login" />
+        <activity android:name=".NewLocation"></activity>
     </application>
 
 </manifest>

@@ -11,7 +11,7 @@ public final class ConstantsAPI {
 
     public static final String CLEANST_ROOT_URL             = "https://cleanst.herokuapp.com/";
     public static final String CLEANST_POST_CREATE_LOCATION = "create-location/";
-    public static final String CLEANST_GET_LOCATIONS        = "get-locations/";
+    public static final String CLEANST_GET_LOCATIONS        = "get-locations/{type}";
     public static final String CLEANST_POST_COMMENT         = "add-comment/{idLocation}/{comment}/";
 
 }

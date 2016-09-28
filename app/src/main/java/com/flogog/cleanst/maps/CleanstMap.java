@@ -1,6 +1,8 @@
 package com.flogog.cleanst.maps;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -10,14 +12,20 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.flogog.cleanst.MainActivity;
 import com.flogog.cleanst.Manifest;
+import com.flogog.cleanst.NewLocation;
 import com.flogog.cleanst.R;
 import com.flogog.cleanst.presenter.MapFragmentPresenter;
+import com.flogog.cleanst.restAPI.IEndpointsAPI;
+import com.flogog.cleanst.restAPI.adapter.RestAdapter;
+import com.flogog.cleanst.restAPI.model.LocationResponse;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -26,16 +34,21 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.mikhaellopez.circularimageview.CircularImageView;
+import com.google.gson.Gson;
+import com.google.maps.android.clustering.ClusterManager;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.Context.LOCATION_SERVICE;
 
 public class CleanstMap extends Fragment {
 
-
+    private ViewGroup container;
     private MapView mMapView;
     private GoogleMap googleMap;
-    private CircularImageView civCreate;
     private LatLng location;
     private String locationName;
     private String locationDescription;
@@ -45,14 +58,22 @@ public class CleanstMap extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         context = getActivity().getApplicationContext();
         requestPermission(android.Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_REQUEST_CODE);
-        View rootView = inflater.inflate(R.layout.fragment_map, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_map, container, false);
+        this.container = container;
+       // civCreate = (CircularImageView) rootView.findViewById(R.id.civProfilePic);
 
-        civCreate = (CircularImageView) rootView.findViewById(R.id.civProfilePic);
-
+        CircleImageView imgFavorite = (CircleImageView) rootView.findViewById(R.id.newLocation);
+        imgFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(container.getContext(), NewLocation.class);
+                startActivity(intent);
+            }
+        });
 
 
         mMapView = (MapView) rootView.findViewById(R.id.cleanstMap);
@@ -60,7 +81,7 @@ public class CleanstMap extends Fragment {
 
         mMapView.onResume(); // needed to get the map to display immediately
 
-
+        getLocations("1");
 
 
         try {
@@ -134,9 +155,31 @@ public class CleanstMap extends Fragment {
         }
     }
 
-    public void createLocation(){
-        Toast.makeText(context,"Location Created",Toast.LENGTH_LONG).show();
+    private void getLocations(final String type){
+        RestAdapter restAdapter     =  new RestAdapter();
+        Gson mediaRecentGson = restAdapter.createGSONDeserializeLocations();
+        IEndpointsAPI endpointsAPI    = restAdapter.startConnectionRestAPI(mediaRecentGson);
 
+        Call<LocationResponse> responseCall    = endpointsAPI.getLocations(type);
+
+        //System.out.println("-------------"+responseCall.toString());
+        responseCall.enqueue(new Callback<LocationResponse>() {
+            @Override
+            public void onResponse(Call<LocationResponse> call, Response<LocationResponse> response) {
+                LocationResponse locationResponse = response.body();
+                System.out.println("+++++++++ "+locationResponse.getLocations().size());
+            }
+
+            @Override
+            public void onFailure(Call<LocationResponse> call, Throwable throwable) {
+                Toast.makeText(context,"Error en la conextion, Try Again", Toast.LENGTH_LONG).show();
+                Log.i("Error en la conextion",throwable.toString());
+            }
+        });
+    }
+
+    public void addLocation(){
+        ((MainActivity)getActivity()).addLocation();
     }
 
 
