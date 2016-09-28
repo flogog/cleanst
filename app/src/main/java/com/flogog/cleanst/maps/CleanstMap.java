@@ -55,6 +55,7 @@ public class CleanstMap extends Fragment {
     private MapFragmentPresenter mapPresenter;
     private static final int LOCATION_REQUEST_CODE = 101;
     private Context context;
+    int locationCount = 0;
 
 
     @Override
@@ -80,10 +81,7 @@ public class CleanstMap extends Fragment {
         mMapView.onCreate(savedInstanceState);
 
         mMapView.onResume(); // needed to get the map to display immediately
-
-        getLocations("1");
-
-
+        
         try {
             MapsInitializer.initialize(context);
         } catch (Exception e) {
@@ -124,20 +122,19 @@ public class CleanstMap extends Fragment {
                         .title(locationName)
                         .snippet(locationDescription)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));*/
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,17));
-
-             /*   googleMap = mMap;
-
-                // For showing a move to my location button
-                googleMap.setMyLocationEnabled(true);
-
-                // For dropping a marker at a point on the Map
-                LatLng sydney = new LatLng(-34, 151);
-                googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
-
-                // For zooming automatically to the location of the marker
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));*/
+                ArrayList<LatLng> locations = getLocations("1");
+                 if(locationCount!=0){
+                    String lat = "";
+                    String lng = "";
+                    // Iterating through all the locations returned by getLocations("1")
+                    for(int i=0;i<locations.size();i++){
+                        drawMarker(locations.get(i));
+                    }
+                    // Moving CameraPosition to last clicked position
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng))));
+                    // Setting the zoom level in the map on last position  is clicked
+                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+                }
             }
         });
 
@@ -167,6 +164,8 @@ public class CleanstMap extends Fragment {
             @Override
             public void onResponse(Call<LocationResponse> call, Response<LocationResponse> response) {
                 LocationResponse locationResponse = response.body();
+                locationResponse
+                LatLng new location = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng))
                 System.out.println("+++++++++ "+locationResponse.getLocations().size());
             }
 
@@ -181,6 +180,19 @@ public class CleanstMap extends Fragment {
     public void addLocation(){
         ((MainActivity)getActivity()).addLocation();
     }
+    
+    private void drawMarker(LatLng point){
+        // Creating an instance of MarkerOptions
+        MarkerOptions markerOptions = new MarkerOptions();
+ 
+        // Setting latitude and longitude for the marker
+        markerOptions.position(point);
+ 
+        // Adding marker on the Google Map
+        googleMap.addMarker(markerOptions);
+    }
+    
+    
 
 
 
