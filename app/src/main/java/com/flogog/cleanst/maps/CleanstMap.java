@@ -2,9 +2,9 @@ package com.flogog.cleanst.maps;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -223,10 +223,7 @@ public class CleanstMap extends Fragment {
     public void addLocation(){
         ((MainActivity)getActivity()).addLocation();
     }
-    
 
-
-    
 
 
 

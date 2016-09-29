@@ -21,8 +21,7 @@
         app:civ_border_color="#FF000000"
         android:layout_above="@+id/recycle"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="104dp"
-        android:onClick="newTrashCan"/>
+        android:layout_marginBottom="104dp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/recycle"
@@ -33,8 +32,7 @@
         app:civ_border_color="#FF000000"
         android:layout_marginBottom="201dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/trash_can"
-        android:onClick="newRecycleBin"/>
+        android:layout_alignStart="@+id/trash_can" />
 
     <TextView
         android:text="@string/item_waste"
@@ -54,15 +52,5 @@
         android:layout_below="@+id/trash_can"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="39dp"
-        android:id="@+id/button3"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:background="@drawable/recycle_one"
-        android:onClick="newRecycleBin"/>
 
 </RelativeLayout>
