@@ -22,7 +22,7 @@
         android:layout_above="@+id/recycle"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="104dp"
-        android:onClick="newTrashcan"/>
+        android:onClick="newTrashCan"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/recycle"
@@ -37,15 +37,6 @@
         android:onClick="newRecycleBin"/>
 
     <TextView
-        android:text="@string/item_recycle_bin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:layout_marginTop="104dp"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
         android:text="@string/item_waste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,5 +44,25 @@
         android:id="@+id/textView2"
         android:layout_above="@+id/recycle"
         android:layout_centerHorizontal="true" />
-    recy
+
+    <TextView
+        android:text="@string/item_recycle_bin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_marginTop="121dp"
+        android:layout_below="@+id/trash_can"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="39dp"
+        android:id="@+id/button3"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:background="@drawable/recycle_one"
+        android:onClick="newRecycleBin"/>
+
 </RelativeLayout>

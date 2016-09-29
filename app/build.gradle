@@ -20,6 +20,12 @@ android {
             debuggable true
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+    }
 }
 
 
@@ -36,4 +42,5 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.google.android.gms:play-services:9.2.0'
     compile 'com.google.maps.android:android-maps-utils:0.4+'
+    compile 'com.firebase:firebase-client-android:2.5.2+'
 }

@@ -1,10 +1,15 @@
 package com.flogog.cleanst.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /**
  * Created by flogog on 9/26/16.
  */
 
-public class Location {
+public class Location implements Parcelable{
 
     private String locationId;
     private String latitude;
@@ -28,6 +33,26 @@ public class Location {
         this.type = type;
         this.comment = comment;
     }
+
+    protected Location(Parcel in) {
+        locationId = in.readString();
+        latitude = in.readString();
+        longitude = in.readString();
+        type = in.readString();
+        comment = in.readString();
+    }
+
+    public static final Creator<Location> CREATOR = new Creator<Location>() {
+        @Override
+        public Location createFromParcel(Parcel in) {
+            return new Location(in);
+        }
+
+        @Override
+        public Location[] newArray(int size) {
+            return new Location[size];
+        }
+    };
 
     public String getLocationId() {
         return locationId;
@@ -78,5 +103,19 @@ public class Location {
                 ", type='" + type + '\'' +
                 ", comment='" + comment + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(locationId);
+        parcel.writeString(latitude);
+        parcel.writeString(longitude);
+        parcel.writeString(type);
+        parcel.writeString(comment);
     }
 }
