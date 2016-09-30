@@ -109,6 +109,12 @@ public class CleanstMap extends Fragment {
                 }
                 googleMap.setMyLocationEnabled(true);
 
+                LocationManager service = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
+                Criteria criteria = new Criteria();
+                String provider = service.getBestProvider(criteria, false);
+                android.location.Location location = service.getLastKnownLocation(provider);
+                LatLng loc = new LatLng(location.getLatitude(),location.getLongitude());
+
              /*   googleMap.addMarker(new MarkerOptions()
                         .position(location)
                         .title(locationName)
@@ -120,9 +126,22 @@ public class CleanstMap extends Fragment {
                     }*/
 
                     // Moving CameraPosition to last clicked position
-                  //  googleMap.moveCamera(CameraUpdateFactory.newLatLng(ltln));
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
                     // Setting the zoom level in the map on last position  is clicked
-                 //   googleMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+                   googleMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+
+                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+                    @Override
+                    public void onMapClick(LatLng arg0) {
+                        // TODO Auto-generated method stub
+                        Intent intent = new Intent(context, NewLocation.class);
+                        intent.putExtra("lat",arg0.latitude);
+                        intent.putExtra("lng",arg0.longitude);
+                        startActivity(intent);
+                        Log.d("arg0", arg0.latitude + "-" + arg0.longitude);
+                    }
+                });
             }
         });
 

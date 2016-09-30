@@ -21,6 +21,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="firebase_locations_comment">comment</string>
+    <string name="firebase_locations_latitude">lat</string>
+    <string name="firebase_locations_id">location_id</string>
+    <string name="firebase_locations_longitude">long</string>
+    <string name="firebase_locations_type">type</string>
+    <string name="firebase_locations">locations</string>
+    <string name="firebase_database_locations">https://cleanst-ff026.firebaseio.com</string>
+    <string name="table_locations_recycle_type">2</string>
+    <string name="table_locations_waste_type">1</string>
 </resources>
 
 
