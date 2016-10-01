@@ -31,6 +31,7 @@
     <string name="table_locations_recycle_type">2</string>
     <string name="table_locations_waste_type">1</string>
     <string name="firebase_database_locations">https://cleanst-ff026.firebaseio.com/locations</string>
+    <string name="firebase_database_suggestions">https://cleanst-ff026.firebaseio.com/suggestions</string>
 </resources>
 
 

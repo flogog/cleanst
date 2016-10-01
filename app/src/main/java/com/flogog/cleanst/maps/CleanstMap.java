@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -26,7 +25,6 @@ import com.firebase.client.ValueEventListener;
 import com.flogog.cleanst.NewLocation;
 import com.flogog.cleanst.R;
 import com.flogog.cleanst.pojo.Location;
-import com.flogog.cleanst.presenter.MapFragmentPresenter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -37,8 +35,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.SphericalUtil;
 
-import java.util.ArrayList;
+import java.text.DecimalFormat;
 import java.util.Map;
 
 
@@ -49,12 +48,9 @@ public class CleanstMap extends Fragment implements LocationListener {
     private ViewGroup container;
     private MapView mMapView;
     private GoogleMap googleMap;
-    private String locationName;
-    private String locationDescription;
-    private MapFragmentPresenter mapPresenter;
+    private LatLng currentLatLng;
     private static final int LOCATION_REQUEST_CODE = 101;
     private Context context;
-    private ArrayList<Location> locations;
     public LocationManager locationManager;
     public double latitude;
     public double longitude;
@@ -100,7 +96,7 @@ public class CleanstMap extends Fragment implements LocationListener {
                 Criteria criteria = new Criteria();
                 String provider = service.getBestProvider(criteria, false);
                 android.location.Location currentLocation = service.getLastKnownLocation(provider);
-                LatLng currentLatLng = new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude());
+                currentLatLng = new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude());
 
                 // Moving CameraPosition to last clicked position
                   googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
@@ -113,6 +109,7 @@ public class CleanstMap extends Fragment implements LocationListener {
                     public void onMapClick(LatLng arg0) {
                         // TODO Auto-generated method stub
                         Intent intent = new Intent(context, NewLocation.class);
+                        intent.putExtra("table","locations");
                         intent.putExtra("lat", arg0.latitude);
                         intent.putExtra("lng", arg0.longitude);
                         startActivity(intent);
@@ -200,9 +197,12 @@ public class CleanstMap extends Fragment implements LocationListener {
             location_trash = BitmapDescriptorFactory.fromResource(R.drawable.rsz_waste_loc);
         }
 
+        Double distance = SphericalUtil.computeDistanceBetween(currentLatLng, point);
+        DecimalFormat df2 = new DecimalFormat("#####");
+
         markerOptions.position(point)
-                .title(locationName)
-                .snippet(locationDescription)
+                .title(location.getLocationId())
+                .snippet("This location is "+Double.valueOf(df2.format(distance))+" meters away")
                 .icon(location_trash);
         googleMap.addMarker(markerOptions);
     }

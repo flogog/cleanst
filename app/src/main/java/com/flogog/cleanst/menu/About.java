@@ -18,12 +18,12 @@ public class About extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actionbar_cleanst);
-        //setSupportActionBar(mascotaActionBar);
-        Toolbar mascotaActionBar = (Toolbar) findViewById(R.id.toolbar);
-        mascotaActionBar.setSaveFromParentEnabled(true);
-        mascotaActionBar.setNavigationIcon(R.drawable.cleanst_logo_nt);
-        mascotaActionBar.setTitle(R.string.app_name);
-        mascotaActionBar.setNavigationOnClickListener(new View.OnClickListener() {
+
+        Toolbar cleanStActionBar = (Toolbar) findViewById(R.id.toolbar);
+        cleanStActionBar.setSaveFromParentEnabled(true);
+        cleanStActionBar.setNavigationIcon(R.drawable.cleanst_logo_nt);
+        cleanStActionBar.setTitle(R.string.app_name);
+        cleanStActionBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavUtils.navigateUpTo(About.this, About.this.getIntent());

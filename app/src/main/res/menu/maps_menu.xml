@@ -6,17 +6,17 @@
         android:title="@string/app_name"
         android:orderInCategory="100"
         app:showAsAction="always"
-        android:icon="@drawable/cleanst_logo_nt">
+        android:icon="@drawable/logo">
     </item>
     <item
         android:id="@+id/mSettings"
         android:title="@string/settings"
-        android:orderInCategory="100"
+        android:orderInCategory="101"
         ></item>
     <item
         android:id="@+id/mAbout"
         android:title="@string/about"
-        android:orderInCategory="101"
+        android:orderInCategory="102"
         ></item>
 
 </menu>
