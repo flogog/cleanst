@@ -6,7 +6,7 @@
     tools:context=".menu.About">
 
     <include
-        android:id="@+id/mascotaActionBar"
+        android:id="@+id/toolbar"
         layout="@layout/actionbar_cleanst" />
 
     <ImageView

@@ -17,7 +17,7 @@ public class Settings extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.actionbar_cleanst);
+        setContentView(R.layout.activity_settings);
 
         Toolbar cleanStActionBar = (Toolbar) findViewById(R.id.toolbar);
         cleanStActionBar.setSaveFromParentEnabled(true);
