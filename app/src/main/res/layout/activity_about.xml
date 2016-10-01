@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menu.About">
+
+    <include
+        android:id="@+id/mascotaActionBar"
+        layout="@layout/actionbar_cleanst" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/mascotaActionBar"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/item_version"
+        android:ems="10"
+        android:textSize="12dp"
+        android:textAlignment="center"
+        android:id="@+id/derTitle"
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/item_developed"
+        android:ems="10"
+        android:textSize="15dp"
+        android:textAlignment="center"
+        android:id="@+id/devTitle"
+        android:layout_marginBottom="23dp"
+        android:layout_alignBottom="@+id/derTitle"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="8dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/app_name"
+        android:ems="10"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:id="@+id/cleanStTitle"
+        android:layout_above="@+id/devTitle"
+        android:layout_alignEnd="@+id/devTitle"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="8dp" />
+</RelativeLayout>

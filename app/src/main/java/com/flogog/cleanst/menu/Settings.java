@@ -21,8 +21,6 @@ public class Settings extends AppCompatActivity {
 
         Toolbar cleanStActionBar = (Toolbar) findViewById(R.id.toolbar);
         cleanStActionBar.setSaveFromParentEnabled(true);
-        cleanStActionBar.setNavigationIcon(R.drawable.cleanst_logo_nt);
-        cleanStActionBar.setTitle(R.string.app_name);
         cleanStActionBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
