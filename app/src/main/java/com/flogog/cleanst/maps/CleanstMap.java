@@ -3,6 +3,7 @@ package com.flogog.cleanst.maps;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.LocationListener;
@@ -200,9 +201,12 @@ public class CleanstMap extends Fragment implements LocationListener {
         Double distance = SphericalUtil.computeDistanceBetween(currentLatLng, point);
         DecimalFormat df2 = new DecimalFormat("#####");
 
+        SharedPreferences preferences =  this.context.getSharedPreferences("settings",this.context.MODE_PRIVATE);
+        String units = preferences.getString("units",null);
+
         markerOptions.position(point)
                 .title(location.getLocationId())
-                .snippet("This location is "+Double.valueOf(df2.format(distance))+" meters away")
+                .snippet("This location is "+Double.valueOf(df2.format(distance))+" "+units+" away")
                 .icon(location_trash);
         googleMap.addMarker(markerOptions);
     }
