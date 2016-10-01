@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
+/*
     private void createLocation(Location newLocation){
         RestAdapter restAdapter     =  new RestAdapter();
         IEndpointsAPI endpointsAPI    = restAdapter.startHerokuRestAPI();
@@ -143,6 +143,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+*/
 
 }

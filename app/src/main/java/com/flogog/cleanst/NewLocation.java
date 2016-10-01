@@ -30,8 +30,9 @@ public class NewLocation extends AppCompatActivity {
                 Location location = new Location();
                 location.setType(getString(R.string.table_locations_recycle_type));
                 location.setLocationId("132145");
-                location.setLatitude(lat.toString());
-                location.setLongitude(lng.toString());
+                location.setLatitude(lat);
+                location.setLongitude(lng);
+                location.setComment("");
                 createLocationFirebase(location);
             }
         });
@@ -43,8 +44,9 @@ public class NewLocation extends AppCompatActivity {
                 Location location = new Location();
                 location.setType(getString(R.string.table_locations_waste_type));
                 location.setLocationId("132145");
-                location.setLatitude(lat.toString());
-                location.setLongitude(lng.toString());
+                location.setLatitude(lat);
+                location.setLongitude(lng);
+                location.setComment("");
                 createLocationFirebase(location);
             }
         });
@@ -52,13 +54,14 @@ public class NewLocation extends AppCompatActivity {
     }
 
     private void createLocationFirebase(Location loc){
-        Firebase myFirebaseRef = new Firebase(getString(R.string.firebase_database_locations));
+        Firebase myFirebaseRef = new Firebase(getString(R.string.firebase_database));
         Firebase locationsTable = myFirebaseRef.child(getString(R.string.firebase_locations)).push();
         locationsTable.child(getString(R.string.firebase_locations_comment)).setValue(loc.getComment());
-        locationsTable.child(getString(R.string.firebase_locations_latitude)).setValue(loc.getLatitude());
+        locationsTable.child(getString(R.string.firebase_locations_latitude)).setValue(loc.getLatitude().toString());
         locationsTable.child(getString(R.string.firebase_locations_id)).setValue(loc.getLocationId());
-        locationsTable.child(getString(R.string.firebase_locations_longitude)).setValue(loc.getLongitude());
+        locationsTable.child(getString(R.string.firebase_locations_longitude)).setValue(loc.getLongitude().toString());
         locationsTable.child(getString(R.string.firebase_locations_type)).setValue(loc.getType());
+        System.out.print("Record inserted "+loc.toString());
     }
 
 }

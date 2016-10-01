@@ -1,8 +1,10 @@
 package com.flogog.cleanst.maps;
 
+import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -10,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.flogog.cleanst.R;
 import com.flogog.cleanst.presenter.MapFragmentPresenter;
@@ -35,6 +38,9 @@ public class CleanstMapSuggestion extends Fragment {
     private String locationName;
     private String locationDescription;
     private MapFragmentPresenter mapPresenter;
+    public LocationManager locationManager;
+    public double latitude;
+    public double longitude;
 
 
     @Override
@@ -77,7 +83,7 @@ public class CleanstMapSuggestion extends Fragment {
                 Criteria criteria = new Criteria();
                 String provider = service.getBestProvider(criteria, false);
                 Location location = service.getLastKnownLocation(provider);
-                loc = new LatLng(location.getLatitude(),location.getLongitude());
+              //  loc = new LatLng(location.getLatitude(),location.getLongitude());
 
 
              /*   googleMap.addMarker(new MarkerOptions()
@@ -85,11 +91,11 @@ public class CleanstMapSuggestion extends Fragment {
                         .title(locationName)
                         .snippet(locationDescription)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));*/
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,17));
+//                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,17));
 
             }
         });
         return rootView;
     }
-
+    
 }

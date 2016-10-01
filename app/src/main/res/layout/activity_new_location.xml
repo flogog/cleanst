@@ -12,28 +12,6 @@
     tools:context="com.flogog.cleanst.NewLocation">
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/trash_can"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/trashcan_one"
-        app:civ_border_width="1dp"
-        app:civ_border_color="#FF000000"
-        android:layout_above="@+id/recycle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="104dp" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/recycle"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/recycle_one"
-        app:civ_border_width="1dp"
-        app:civ_border_color="#FF000000"
-        android:layout_marginBottom="201dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/trash_can" />
-
     <TextView
         android:text="@string/item_waste"
         android:layout_width="wrap_content"
@@ -48,9 +26,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:layout_marginTop="121dp"
-        android:layout_below="@+id/trash_can"
+        android:layout_marginBottom="114dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/recycle"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/recycle"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#FF000000"
+        android:layout_marginBottom="8dp"
+        android:layout_above="@+id/textView"
+        android:layout_alignStart="@+id/trash_can" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/trash_can"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/waste"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#FF000000"
+        android:layout_above="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp" />
 
 
 </RelativeLayout>

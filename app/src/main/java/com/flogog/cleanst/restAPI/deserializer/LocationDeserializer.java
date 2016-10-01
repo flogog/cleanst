@@ -38,11 +38,11 @@ public class LocationDeserializer implements JsonDeserializer<LocationResponse>{
         for(int i=0; i<locationResponseData.size(); i++){
             JsonObject locationResponseDataObject   = locationResponseData.get(i).getAsJsonObject();
             String          type                  = locationResponseDataObject.get(JsonKeys.TYPE).getAsString();
-            String          lat               = locationResponseDataObject.get(JsonKeys.LATITUDE).getAsString();
-            String          lng               = locationResponseDataObject.get(JsonKeys.LOGITUDE).getAsString();
-            Location newLocation =  new Location(type,lat,lng);
-            locations.add(newLocation);
-            System.out.println("****************************"+newLocation.toString());
+           // Double          lat               = locationResponseDataObject.get(JsonKeys.LATITUDE).getAsString();
+         //   Double          lng               = locationResponseDataObject.get(JsonKeys.LOGITUDE).getAsString();
+         //   Location newLocation =  new Location(type,lat,lng);
+          //  locations.add(newLocation);
+          //  System.out.println("****************************"+newLocation.toString());
         }
         return locations;
     }
