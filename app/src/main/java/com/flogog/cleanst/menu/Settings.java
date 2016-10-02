@@ -3,14 +3,12 @@ package com.flogog.cleanst.menu;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.flogog.cleanst.R;
 
@@ -22,6 +20,8 @@ import java.util.List;
  */
 
 public class Settings extends AppCompatActivity {
+
+    private Spinner sItems;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -41,28 +41,27 @@ public class Settings extends AppCompatActivity {
 
 
         List<String> spinnerArray =  new ArrayList<String>();
-        spinnerArray.add("meters");
-        spinnerArray.add("miles");
+        spinnerArray.add(getString(R.string.spinner_value1));
+        spinnerArray.add(getString(R.string.spinner_value2));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, spinnerArray);
 
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner sItems = (Spinner) findViewById(R.id.spinner);
+        sItems = (Spinner) findViewById(R.id.spinner);
         sItems.setAdapter(adapter);
 
-        String selected = sItems.getSelectedItem().toString();
-        savePreference(selected);
 
 
     }
 
-    public void savePreference(String selected){
-        SharedPreferences preferences =  getSharedPreferences("settings", Context.MODE_PRIVATE);
+    public void savePreference(View v){
+        SharedPreferences preferences =  getSharedPreferences(getString(R.string.settings), Context.MODE_PRIVATE);
 
+        String selected = sItems.getSelectedItem().toString();
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("units",selected);
+        editor.putString(getString(R.string.item_units),selected);
 
         editor.apply();
 

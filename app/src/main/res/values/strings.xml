@@ -16,10 +16,14 @@
     <string name="item_like">Like</string>
     <string name="item_likes">Likes</string>
     <string name="item_miles">miles away</string>
+    <string name="item_units">units</string>
     <string name="field_username">username</string>
     <string name="field_password">password</string>
     <string name="item_developed">Developed By: flogog@gmail.com</string>
     <string name="item_version">v1.0</string>
+    <string name="item_table">table</string>
+    <string name="spinner_value1">meters</string>
+    <string name="spinner_value2">miles</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -29,11 +33,13 @@
     <string name="firebase_locations_longitude">lng</string>
     <string name="firebase_locations_type">type</string>
     <string name="firebase_locations">locations</string>
+    <string name="firebase_suggestions">suggestions</string>
     <string name="firebase_database">https://cleanst-ff026.firebaseio.com</string>
     <string name="table_locations_recycle_type">2</string>
     <string name="table_locations_waste_type">1</string>
     <string name="firebase_database_locations">https://cleanst-ff026.firebaseio.com/locations</string>
     <string name="firebase_database_suggestions">https://cleanst-ff026.firebaseio.com/suggestions</string>
+
 </resources>
 
 

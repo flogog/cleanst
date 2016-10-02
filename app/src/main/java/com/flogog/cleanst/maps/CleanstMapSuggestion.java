@@ -110,11 +110,10 @@ public class CleanstMapSuggestion extends Fragment implements LocationListener{
                     public void onMapClick(LatLng arg0) {
                         // TODO Auto-generated method stub
                         Intent intent = new Intent(context, NewLocation.class);
-                        intent.putExtra("table","suggestions");
-                        intent.putExtra("lat", arg0.latitude);
-                        intent.putExtra("lng", arg0.longitude);
+                        intent.putExtra(getString(R.string.item_table),getString(R.string.firebase_suggestions));
+                        intent.putExtra(getString(R.string.firebase_locations_latitude), arg0.latitude);
+                        intent.putExtra(getString(R.string.firebase_locations_longitude), arg0.longitude);
                         startActivity(intent);
-                        Log.d("arg0", arg0.latitude + "-" + arg0.longitude);
                     }
                 });
 
@@ -161,8 +160,6 @@ public class CleanstMapSuggestion extends Fragment implements LocationListener{
                         loc.setLongitude(Double.parseDouble(String.valueOf(values.get(getString(R.string.firebase_locations_longitude)))));
                         loc.setLocationId(String.valueOf(values.get(getString(R.string.firebase_locations_id))));
                         loc.setType(String.valueOf(values.get(getString(R.string.firebase_locations_type))));
-                        System.out.print(loc.toString());
-
                         drawMarker(loc);
                     }
 

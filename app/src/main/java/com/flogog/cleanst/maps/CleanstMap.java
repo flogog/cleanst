@@ -66,7 +66,6 @@ public class CleanstMap extends Fragment implements LocationListener {
         requestPermission(android.Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_REQUEST_CODE);
         final View rootView = inflater.inflate(R.layout.fragment_map, container, false);
         this.container = container;
-        // civCreate = (CircularImageView) rootView.findViewById(R.id.civProfilePic);
 
         mMapView = (MapView) rootView.findViewById(R.id.cleanstMap);
         mMapView.onCreate(savedInstanceState);
@@ -110,11 +109,10 @@ public class CleanstMap extends Fragment implements LocationListener {
                     public void onMapClick(LatLng arg0) {
                         // TODO Auto-generated method stub
                         Intent intent = new Intent(context, NewLocation.class);
-                        intent.putExtra("table","locations");
-                        intent.putExtra("lat", arg0.latitude);
-                        intent.putExtra("lng", arg0.longitude);
+                        intent.putExtra(getString(R.string.item_table),getString(R.string.firebase_locations));
+                        intent.putExtra(getString(R.string.firebase_locations_latitude), arg0.latitude);
+                        intent.putExtra(getString(R.string.firebase_locations_longitude), arg0.longitude);
                         startActivity(intent);
-                        Log.d("arg0", arg0.latitude + "-" + arg0.longitude);
                     }
                 });
 
@@ -201,8 +199,9 @@ public class CleanstMap extends Fragment implements LocationListener {
         Double distance = SphericalUtil.computeDistanceBetween(currentLatLng, point);
         DecimalFormat df2 = new DecimalFormat("#####");
 
-        SharedPreferences preferences =  this.context.getSharedPreferences("settings",this.context.MODE_PRIVATE);
-        String units = preferences.getString("units",null);
+        SharedPreferences preferences =  this.context.getSharedPreferences(getString(R.string.settings),this.context.MODE_PRIVATE);
+        String units = preferences.getString(getString(R.string.item_units),getString(R.string.item_miles));
+        System.out.println(units);
 
         markerOptions.position(point)
                 .title(location.getLocationId())
